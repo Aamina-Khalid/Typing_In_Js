@@ -6,6 +6,7 @@ This can produce unexpected behaviours if we're not careful about the data types
 Consider this basic addition function:
 
 
+
 function add(a, b) {
 
  return a + b;
@@ -15,6 +16,7 @@ function add(a, b) {
 console.log(add(5, 10)); // Output: 15
 
 console.log(add("5", 10)); // Output: "510"
+
 
 
 Without strong typing, we can't tell the function to only accept numbers as arguments. As a result, if we accidentally pass in a string instead of a number, the function will concatenate the values together instead of adding them, and suddenly "5" + "10" becomes "510."
@@ -34,6 +36,7 @@ First, we can use the typeof operator to identify the data type of any value, an
 Implementing this strategy for our add function would look like this:
 
 
+
 function add(a, b) {
 
  if (typeof a !== "number" || typeof b !== "number") {
@@ -47,11 +50,13 @@ function add(a, b) {
 }
 
 
+
 This approach could be expanded further to identify the type of each argument and tell the developer what data is being passed in. It can also be expanded to include more complex data types like objects or arrays.
 
 We can expand on this approach and make it DRY by creating a generic assert function that throws an error when data does not meet a specified type. This function can then be reused any time we need type checking.
 
 Here's what the add function would look like using an assert function:
+
 
 
 function assertType(value, type) {
@@ -76,11 +81,13 @@ function add(a, b) {
 }
 
 
+
 For larger applications, this DRY approach is quicker to implement and easier to understand and maintain.
 
 For more complex data types, we can integrate type checks directly into constructor functions or classes to ensure objects are created with valid types.
 
 The example below shows the familiar Backpack class with type checks added to the constructor using an expanded assertType() function:
+
 
 
 function assertType(value, type, paramName) {
@@ -173,9 +180,8 @@ class Backpack {
  
 }
 
+
+
 This last example hints at why type checking is so important. When we start working with larger functions and complex data—especially if that data comes from an outside source like an API—it is vital to ensure the data going into different functionality is the type we expect it to be.
 
 The techniques showcased here give you more control over data types in your code, and for many applications they will be sufficient. However, if you find yourself writing a lot of type checking code, it might be time to switch your project to TypeScript. That way, you get all the goodness of JavaScript with strong typing built right in!
-This last example hints at why type checking is so important. When we start working with larger functions and complex data—especially if that data comes from an outside source like an API—it is vital to ensure the data going into different functionality is the type we expect it to be.
-
-The techniques showcased here give you more control over data types in your code, and for many applications they will be sufficient. However, if you find yourself writing a lot of type checking code, it might be time to switch your project to TypeScript. That way, you get all the goodness of JavaScript with strong typing built right in!# Typing_In_Js
